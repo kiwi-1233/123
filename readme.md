@@ -1,5 +1,5 @@
 # 权限组件第一版
-文件结构
+![SharedScreenshot1](C:%5CUsers%5Cw1887%5Cdjango%E9%A1%B9%E7%9B%AE%5Cassets%5CSharedScreenshot1.jpg)
 
 
 
@@ -108,7 +108,7 @@ urlpatterns = [
     url(r'^payment/del/(?P<pid>\d+)/$', payment.payment_del),
 ]
 
-```   
+```
 ## 5.视图函数
 ```python
 #建立views文件夹
