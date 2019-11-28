@@ -3,7 +3,7 @@
 *************************************************
  Create Time:  2019/11/27 18:09
  Project Name: django项目
- File Name:    middlewares
+ File Name:    middleware
  Author:       w1887
 *************************************************
 # code is far away from bugs with the god animal
@@ -43,12 +43,11 @@ class AuthMiddleware(MiddlewareMixin):
             if re.match(i,url):
                 return
 
-        permission = request.session.get('url')
+        permission = request.session.get(settings.PERMISSION_SESSION_KEY)
         print(permission)
         if permission:
             for i in  permission:
-                print(i)
-                if re.match(r'^{}$'.format(i['permission__url']),url):
+                if re.match(r'^{}$'.format(i['url']),url):
                     return
         return HttpResponse('无访问权限')
 

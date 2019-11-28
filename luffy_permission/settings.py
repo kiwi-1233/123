@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'web.apps.WebConfig',
     'rbac.apps.RbacConfig'
+
 ]
 
 MIDDLEWARE = [
@@ -47,7 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'middlewares.AuthMiddleware'
+    'rbac.middleware.rbac_middlewares.AuthMiddleware'
 ]
 
 ROOT_URLCONF = 'luffy_permission.urls'
@@ -65,6 +66,11 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries' : {
+                'rabc' : 'rbac.templatetags.rabc' ,
+
+            }
+
         },
     },
 ]
@@ -125,3 +131,8 @@ WHITE_LIST = [
 PASS_LIST = [
     r'^/index/$'
 ]
+
+#权限的session_key
+PERMISSION_SESSION_KEY = 'permission'
+#菜单的session_key
+MENU_SESSION_KEY = 'menu'

@@ -150,7 +150,7 @@ def index(request):
 
 ## 7. 定义中间件
 ```python
-# 在项目根目录下定义，middlewares.py文件
+# 在项目根目录下定义，middleware.py文件
 from django.shortcuts import redirect,render,HttpResponse
 from django.utils.deprecation import MiddlewareMixin
 from django.conf import settings

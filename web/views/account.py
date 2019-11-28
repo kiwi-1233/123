@@ -22,24 +22,23 @@
      ┗┻┛  ┗┻┛ 
 """
 from django.shortcuts import render,redirect,HttpResponse
+from rbac.service.permission_init import permission_init
+from django.conf import settings
 from rbac import models
-
+import copy
 
 def login(request) :
     error = ''
     if request.method == 'POST' :
-        print(1)
         username = request.POST.get ('username')
         password = request.POST.get ('password')
         user_obj = models.Users.objects.filter (username=username , password=password).first()
         if not user_obj :
-            print(2)
+
             error = '账户或密码错误'
             return render (request,'login.html',{ 'error' : error })
-        permission =  user_obj.role.filter(permission__url__isnull=False).values('permission__url')
-        print(permission)
-        request.session['is_ok'] = True
-        request.session['url'] = list(permission)
+       #登陆成功后的权限信息初始化
+        permission_init(request,user_obj)
         return redirect('/index/')
     return render (request , 'login.html')
 
